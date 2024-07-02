@@ -1,9 +1,22 @@
-import axios from "axios";
+// import { PrismaClient } from "@prisma/client";
+import client from "@/db";
+// const client = new PrismaClient();
+// async function getUserDetails() {
+//   try {
+//     const response = await axios.get("http://localhost:3000/api/user");
+//     return response.data;
+//   } catch (e) {
+//     console.log(e);
+//   }
+// }
 
 async function getUserDetails() {
   try {
-    const response = await axios.get("http://localhost:3000/api/user");
-    return response.data;
+    const user = await client.user.findFirst({});
+    return {
+      name: user?.username,
+      email: user?.username,
+    };
   } catch (e) {
     console.log(e);
   }
